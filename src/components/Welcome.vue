@@ -1,25 +1,22 @@
 <template>
   <div class="welcome">
-    <img class="background-image" :src="image2" alt="mountains-image" />
-
-    <h1 class="title">{{ title }}</h1>
-    <div class="screens-wrap">
-      <img class="mobile-screens" :src="screens" alt="screens" />
+    <div class="background">
+      <img class="background-image" :src="image" alt="mountains-image" />
+      <h1 class="title">{{ title }}</h1>
+      <p class="subtext">Create your own app store screenshots</p>
+     <slot />
     </div>
   </div>
 </template>
 
 <script>
 import backgroundImage from "../assets/welcome-image.jpg";
-import backgroundImage2 from "../assets/welcome-image-3.jpg";
-import screens from "../assets/mobilescreens.png";
 
 export default {
+  components: {},
   data() {
     return {
       image: backgroundImage,
-      image2: backgroundImage2,
-      screens: screens,
       title: "shotties",
     };
   },
@@ -30,9 +27,14 @@ export default {
 .welcome {
   width: 100%;
   height: 100vh;
-  position: relative;
+}
 
+.background {
   padding-top: 15vh;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: #042c33;
 }
 .background-image {
   width: 100%;
@@ -41,35 +43,32 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: -1;
+  z-index: 1;
+  opacity: 0.5;
 }
 
 .title {
   text-align: center;
-  font-size: 5rem;
+  font-size: 4vw;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   margin: 1rem auto;
   padding: 1rem;
-  width: 40rem;
+  width: 30vw;
   font-family: "Audiowide", cursive;
   border-bottom: dotted 2px white;
+  position: relative;
+  z-index: 1;
 }
-
-.screens-wrap {
-
-    position: absolute;
-    bottom: 0;
-    background: rgb(255, 255, 255);
-    width: 100%;
-    height: 40vh;
-    padding: 1rem 20rem;
-}
-.mobile-screens {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  
+.subtext {
+  text-align: center;
+  font-size: 1vw;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-family: "Audiowide", cursive;
 }
 </style>
