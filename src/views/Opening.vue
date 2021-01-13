@@ -74,4 +74,9 @@ export default {
   transform: translateY(7px);
   
 }
+@media(max-width: 1024px) {
+  .subtext, .icon  {
+    font-size: 16px;
+  }
+}
 </style>

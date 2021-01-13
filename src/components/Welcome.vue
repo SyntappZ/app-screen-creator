@@ -2,22 +2,24 @@
   <div class="welcome">
     <div class="background">
       <img class="background-image" :src="image" alt="mountains-image" />
-      <h1 class="title">{{ title }}</h1>
-      <p class="subtext">Create your own app store screenshots</p>
-     <slot />
+      <Title titleText="shotties" />
+     
+      <slot />
     </div>
   </div>
 </template>
 
 <script>
 import backgroundImage from "../assets/welcome-image.jpg";
+import Title from './Title.vue';
 
 export default {
-  components: {},
+  components: {Title},
   data() {
     return {
       image: backgroundImage,
-      title: "shotties",
+     
+
     };
   },
 };
@@ -34,7 +36,7 @@ export default {
   width: 100%;
   height: 100vh;
   position: relative;
-  background: #042c33;
+  background: var(--main);
 }
 .background-image {
   width: 100%;
@@ -47,28 +49,14 @@ export default {
   opacity: 0.5;
 }
 
-.title {
-  text-align: center;
-  font-size: 4vw;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  margin: 1rem auto;
-  padding: 1rem;
-  width: 30vw;
-  font-family: "Audiowide", cursive;
-  border-bottom: dotted 2px white;
-  position: relative;
-  z-index: 1;
+
+@media(max-width: 1024px) {
+  .subtext, .icon  {
+    font-size: 14px;
+  }
+
 }
-.subtext {
-  text-align: center;
-  font-size: 1vw;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  margin: 1rem auto;
-  padding: 1rem;
-  font-family: "Audiowide", cursive;
+@media (max-width:600px)  {
+ 
 }
 </style>
