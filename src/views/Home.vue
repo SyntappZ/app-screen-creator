@@ -8,12 +8,11 @@
           :key="button.title"
           :title="button.title"
           :icon="button.icon"
-          @click="chooseScreenType(button.title)"
-          :screenType="screenType"
+          @click="screenType(button.title)"
         />
       </div>
     </div>
-    <MainContainer :currentScreen="screenType" />
+    <MainContainer />
   </div>
 </template>
 
@@ -21,6 +20,7 @@
 import Title from "../components/Title";
 import MainContainer from "../components/MainContainer";
 import Button from "../components/Button";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -30,21 +30,26 @@ export default {
   },
   data() {
     return {
+     
       buttonList: [
         { title: "mobile", icon: "mobile-alt" },
         { title: "tablet", icon: "tablet-alt" },
         { title: "desktop", icon: "desktop" },
         { title: "multiple", icon: "border-all" },
       ],
-      screenType: 'mobile'
     };
   },
   methods: {
-    chooseScreenType(type) {
-      this.screenType = type
+    ...mapActions(["updateScreenType"]),
+    ...mapActions("imageStore", ["updateScreenTypeImageStore"]),
+    screenType(type) {
+      this.updateScreenType(type)
+      this.updateScreenTypeImageStore(type)
     },
   },
- 
+  computed: {
+     ...mapState(["currentScreenType"]),
+  }
 };
 </script>
 
