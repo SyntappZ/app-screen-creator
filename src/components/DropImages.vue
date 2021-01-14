@@ -6,8 +6,8 @@
     @dragleave.prevent="dragLeave"
     @drop.prevent="drop($event)"
   >
-    <h1 v-if="mobileImages.length == 0 && !isDragging">Drop some images</h1>
-    <h1 v-else>{{ currentImages.length }} Images Added</h1>
+    <h1 v-if="imagesAmount == 0 && !isDragging">Drag & Drop Images</h1>
+    <h1 v-else>{{ imagesAmount }} Images Added</h1>
 
     <div class="manual">
       <label for="uploadmyfile">
@@ -40,7 +40,7 @@ export default {
       return { isDragging: this.isDragging };
     },
     imagesAmount() {
-      return this.mobileImages.length;
+      return this.currentImages.length;
     },
     ...mapState("imageStore", [
       "mobileImages",
@@ -66,8 +66,8 @@ export default {
         promises.push(this.getBase64(file));
       });
       const sources = await Promise.all(promises);
+     
       this.sendImagesToStore({ type: this.currentScreenType, images: sources });
-      //   this.imageSources = this.imageSources.concat(sources);
       this.isDragging = false;
     },
     requestUploadFile() {
@@ -83,6 +83,7 @@ export default {
         reader.readAsDataURL(file);
       });
     },
+   
   },
 };
 </script>
@@ -106,6 +107,7 @@ export default {
   margin: 50px auto;
   color: white;
   transition: 0.5s ease;
+  border-radius: 10px;
 }
 .isDragging {
   /* background-color: #999; */

@@ -1,25 +1,33 @@
 <template>
-  <div class="button" :style="{ backgroundColor: buttonBackground }">
+  <div
+    class="button"
+    @click="changeView"
+    :style="{ backgroundColor: buttonBackground }"
+  >
     <font-awesome-icon v-if="icon" class="icon" :icon="icon" />
     <p class="title">{{ title }}</p>
   </div>
 </template>
 
+
 <script>
-import { mapState } from "vuex";
-
 export default {
-
   data() {
     return {
-      
+      currentView: this.$router.currentRoute,
     };
   },
   props: ["title", "icon"],
+  methods: {
+    changeView() {
+      const link = `/home/${this.title}`;
+      this.$router.push({ path: link });
+    },
+  },
   computed: {
-    ...mapState(["currentScreenType"]),
     buttonBackground() {
-      return this.currentScreenType === this.title ? "#f44292" : "#626ee3";
+      const currentView = this.currentView.name;
+      return currentView === this.title ? "#f44292" : "#626ee3";
     },
   },
 };
@@ -38,6 +46,7 @@ export default {
   height: 50px;
   margin: 5px;
   transition: 0.5s ease;
+  text-decoration: none;
 }
 .title {
   color: white;

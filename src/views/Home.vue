@@ -8,24 +8,24 @@
           :key="button.title"
           :title="button.title"
           :icon="button.icon"
-          @click="screenType(button.title)"
+         
         />
       </div>
     </div>
-    <MainContainer />
+    <router-view/>
   </div>
 </template>
 
 <script>
 import Title from "../components/Title";
-import MainContainer from "../components/MainContainer";
+
 import Button from "../components/Button";
 import { mapActions, mapState } from "vuex";
 export default {
   name: "Home",
   components: {
     Title,
-    MainContainer,
+
     Button,
   },
   data() {
@@ -33,7 +33,6 @@ export default {
      
       buttonList: [
         { title: "mobile", icon: "mobile-alt" },
-        { title: "tablet", icon: "tablet-alt" },
         { title: "desktop", icon: "desktop" },
         { title: "multiple", icon: "border-all" },
       ],

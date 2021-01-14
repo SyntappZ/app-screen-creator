@@ -22,7 +22,7 @@ const mutations = {
 
 const actions = {
   updateScreenTypeImageStore({ commit }, payload) {
-    console.log(payload)
+    
     commit('updateScreenType', payload)
   },
   sendImagesToStore({ commit }, payload) {
